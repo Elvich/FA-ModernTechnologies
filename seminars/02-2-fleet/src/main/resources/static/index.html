@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Автопарк · Семинар 2-2</title><link rel="stylesheet" href="style.css"><script src="app.js" defer></script></head>
+<body>
+<header><div class="wrap"><span class="eyebrow">Семинар 2-2 · Вариант А–Е</span><h1>Автопарк</h1><p>Машины, владельцы и постановка на учёт</p></div></header>
+<main class="wrap">
+<p id="message" role="status" aria-live="polite"></p>
+<section class="card"><h2 id="form-title">Добавить машину</h2>
+<form id="car-form"><input type="hidden" id="car-id">
+<div class="fields">
+<label>Марка<input id="brand" name="brand" required maxlength="150" placeholder="Например, Toyota"></label>
+<label>Год выпуска<input id="manufactureYear" name="manufactureYear" type="number" min="1886" required></label>
+<label>Дата постановки на учёт<input id="registeredOn" name="registeredOn" type="date" required></label>
+<label>ФИО владельца<input id="ownerName" name="ownerName" required maxlength="250"></label>
+<label>Пробег, км<input id="mileage" name="mileage" type="number" min="0" max="9007199254740991" step="1" required value="0"></label>
+</div>
+<div class="actions"><button id="save-button" type="submit">Добавить</button><button id="cancel" type="button" class="secondary" hidden>Отменить редактирование</button></div>
+</form></section>
+<section class="card"><div class="section-title"><h2>Машины</h2><span class="badge" id="count">Записей: 0</span></div>
+<form id="filter-form" class="filters"><label>Поиск по всем полям<input id="query" type="search" placeholder="Марка, владелец, год, дата, ID или пробег"></label>
+<label>Сортировка по году выпуска<select id="direction"><option value="asc">По возрастанию</option><option value="desc">По убыванию</option></select></label><button type="submit">Найти</button></form>
+<div class="table-scroll"><table><thead><tr><th>ID</th><th>Марка</th><th>Год</th><th>Дата учёта</th><th>Владелец</th><th>Пробег, км</th><th>Действия</th></tr></thead><tbody id="cars"></tbody></table></div><p id="empty" hidden>Машин по вашему запросу нет.</p>
+</section>
+<section class="card"><h2>Постановки на учёт за 7 дней</h2><p class="muted">Все записи, независимо от поискового фильтра. Сегодня и шесть предыдущих дней.</p><div id="histogram" class="histogram" aria-label="Количество машин по датам постановки на учёт"></div></section>
+</main><footer class="wrap">Современные технологии программирования · Java / Spring Boot / MySQL</footer>
+</body></html>
