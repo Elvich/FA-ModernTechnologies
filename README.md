@@ -1,22 +1,23 @@
 # FA Modern Technologies
 
-Семинарские работы по Java, Spring Boot, ORM и веб-программированию.
+Домашние и семинарские работы по Java, Spring Boot, ORM и веб-программированию.
 Вариант **А–Е** (фамилия на «Г»): поля `publisher`, `brand`, `studio`, `kind`, сортировка по возрастанию и гистограммы за **7 дней**. Номер 7 в списке не используется в условиях этих работ.
 
-По уточнению автора все четыре задания семинарские и выполняются **без авторизации**, включая кинотеатр и склад.
+Все четыре домашних задания выполняются **без авторизации**, включая кинотеатр и склад.
 
 ## Структура
 
 ```text
 seminars/
+  03-students/     Учёт студентов (Gradle, MySQL, Thymeleaf)
+homework/
   02-1-library/    Библиотека
   02-2-fleet/      Автопарк
   02-3-cinema/     Кинотеатр
   02-4-warehouse/  Склад магазина техники
-homework/          Место для будущих домашних заданий
 ```
 
-Каждая работа - отдельное Spring Boot приложение со своей базой, REST API, HTML/CSS/JavaScript интерфейсом и тестами. Корневой Maven-проект объединяет сборку. Будущие домашние работы добавляются отдельными модулями в `homework/`, семинарские остаются на своих местах.
+Каждая домашняя работа - отдельное Spring Boot приложение со своей базой, REST API, HTML/CSS/JavaScript интерфейсом и тестами. Корневой Maven-проект объединяет сборку. Домашние работы находятся в `homework/`; новые работы добавляются туда отдельными Maven-модулями.
 
 ## Требования и сборка
 
@@ -33,10 +34,10 @@ JDK 17+ (проверка выполняется на установленном
 Демопрофиль H2 позволяет открыть интерфейс без настройки внешней базы:
 
 ```sh
-./mvnw -pl seminars/02-1-library spring-boot:run -Dspring-boot.run.profiles=demo
-./mvnw -pl seminars/02-2-fleet spring-boot:run -Dspring-boot.run.profiles=demo
-./mvnw -pl seminars/02-3-cinema spring-boot:run -Dspring-boot.run.profiles=demo
-./mvnw -pl seminars/02-4-warehouse spring-boot:run -Dspring-boot.run.profiles=demo
+./mvnw -pl homework/02-1-library spring-boot:run -Dspring-boot.run.profiles=demo
+./mvnw -pl homework/02-2-fleet spring-boot:run -Dspring-boot.run.profiles=demo
+./mvnw -pl homework/02-3-cinema spring-boot:run -Dspring-boot.run.profiles=demo
+./mvnw -pl homework/02-4-warehouse spring-boot:run -Dspring-boot.run.profiles=demo
 ```
 
 Запускайте нужную команду в отдельном терминале из корня проекта. Базы изначально пусты: добавьте свои записи через форму. Профили demo и test используют H2, а основной профиль - MySQL. Особенности сохранения демоданных описаны в README каждого модуля.
@@ -67,7 +68,7 @@ Compose создаёт пользователя `fa` и четыре базы: `
 ```sh
 export DB_USER=fa
 export DB_PASSWORD='ваш-пароль-из-.env'
-./mvnw -pl seminars/02-1-library spring-boot:run
+./mvnw -pl homework/02-1-library spring-boot:run
 ```
 
 Для остальных приложений замените имя модуля. `DB_URL` необязателен: у каждого приложения задан URL собственной базы на `localhost:3306`. Для внешнего MySQL задайте `DB_URL`, `DB_USER`, `DB_PASSWORD` самостоятельно и создайте соответствующую базу. Учётные данные в Git не включаются. Hibernate создаёт и обновляет таблицы в учебных базах при старте (`ddl-auto=update`).
@@ -83,3 +84,7 @@ docker compose stop
 `./mvnw verify` запускает интеграционные тесты HTTP + ORM на изолированных базах H2 в режиме совместимости MySQL: CRUD, поиск, сортировка, гистограммы, ошибки ввода и отсутствие записей. Реальная MySQL и интерактивный интерфейс проверяются отдельно; H2 не заменяет проверку MySQL.
 
 Подробности полей, API и запуска - в README каждой работы. Условия из PDF реализованы с дополнительными полями: текущая дата библиотеки, пробег машины и число проданных билетов.
+
+## Семинары
+
+[Учёт студентов](seminars/03-students/README.md) - самостоятельный Gradle-проект по заданию с лекции. Запуск: `cd seminars/03-students && ./gradlew bootRun`. Страница: http://localhost:8085/web/students. Требуется MySQL; настройки и вариант с Docker описаны в README семинара. Корневая Maven-сборка проверяет только домашние работы.

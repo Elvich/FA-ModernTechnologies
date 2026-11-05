@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Библиотека</title><link rel="stylesheet" href="style.css"><script src="app.js" defer></script></head>
+<body>
+<main>
+  <header><div><p class="eyebrow">Домашняя работа 2-1 · Вариант А–Е</p><h1>Библиотека</h1><p>Учёт выдачи и возврата книг</p></div><p>Сегодня: <strong id="today">загрузка…</strong></p></header>
+  <p id="message" role="status" aria-live="polite"></p>
+  <section aria-labelledby="formTitle"><h2 id="formTitle">Добавить книгу</h2>
+    <form id="bookForm">
+      <label>Название книги<input name="title" required maxlength="200"></label>
+      <label>Издательство<input name="publisher" required maxlength="200"></label>
+      <label>Дата выдачи<input name="issuedOn" type="date" required></label>
+      <label>ФИО студента<input name="studentName" required maxlength="200"></label>
+      <label>Дата сдачи<input name="returnedOn" type="date"><small>Оставьте пустой, если книгу ещё не вернули</small></label>
+      <div class="actions"><button type="submit" id="save">Добавить</button><button type="button" id="cancel" class="secondary" hidden>Отменить редактирование</button></div>
+    </form>
+  </section>
+  <section aria-labelledby="listTitle"><h2 id="listTitle">Книги <span id="count" class="badge">0</span></h2>
+    <div class="filters"><label>Поиск по любому полю<input id="search" type="search" placeholder="Название, издательство, ФИО, дата, ID"></label><label>Дата выдачи<select id="direction"><option value="asc">Сначала ранние</option><option value="desc">Сначала поздние</option></select></label><button type="button" id="find">Найти</button></div>
+    <div class="table-wrap"><table><thead><tr><th>ID</th><th>Название</th><th>Издательство</th><th>Выдана</th><th>Студент</th><th>Сдана</th><th>Действия</th></tr></thead><tbody id="books"></tbody></table></div><p id="empty" hidden>Книги не найдены. Добавьте запись или измените поиск.</p>
+  </section>
+  <section aria-labelledby="chartTitle"><h2 id="chartTitle">Выдачи за последние 7 дней</h2><p>Количество выданных книг по дням, включая сегодня. По всем записям, независимо от поиска.</p><div id="chart" class="chart" role="list" aria-label="Выдачи книг по дням"></div></section>
+</main>
+</body></html>

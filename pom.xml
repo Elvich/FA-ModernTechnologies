@@ -5,8 +5,8 @@
   <groupId>ru.elvich.fa</groupId><artifactId>modern-technologies</artifactId><version>1.0.0-SNAPSHOT</version><packaging>pom</packaging>
   <properties><java.version>17</java.version><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding></properties>
   <modules>
-    <module>seminars/02-1-library</module><module>seminars/02-2-fleet</module>
-    <module>seminars/02-3-cinema</module><module>seminars/02-4-warehouse</module>
+    <module>homework/02-1-library</module><module>homework/02-2-fleet</module>
+    <module>homework/02-3-cinema</module><module>homework/02-4-warehouse</module>
   </modules>
   <dependencies>
     <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-webmvc</artifactId></dependency>
